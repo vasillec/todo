@@ -43,24 +43,3 @@ $(document).ready(function(){
         });
     });
 });
-
-/*function validation_auth() {
-    if ($('#email').val() != "" && $('#pwd').val() != "") {
-        $("#btn_login").removeAttr('disabled');
-    }
-    else {
-        $("#btn_login").attr('disabled', 'disabled');
-    }
-}
-function validation_reg(){
-    $('#email').parent().removeClass('has-error');
-    if ($('#email').val() != "" && $('#pwd').val() != "" && $('#pwd_c').val() != "") {
-        if($('#pwd').val() == $('#pwd_c').val())
-        {
-            $("#button_reg").removeAttr('disabled');
-        }
-        else {
-            $("#button_reg").attr('disabled', 'disabled');
-        }
-    }
-}*/
