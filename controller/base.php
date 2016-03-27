@@ -11,6 +11,10 @@ function SelectFunction($method)
 {
     switch($method)
     {
+        case "check_login":
+        Check_login();
+        break;
+
         case "login":
         Login();
         break;
@@ -66,6 +70,24 @@ function SelectToDB($query)
     return $rez;
 }
 
+function Check_login(){
+    $login =  $_POST["login"];
+    if($login != ""){
+        $result = SelectToDB("SELECT id FROM users WHERE login = '$login'");
+        if(mysql_num_rows($result) == 1)
+        {
+            echo json_encode(false);
+            return;
+        }
+        else{
+            echo json_encode(true);
+            return;
+        }
+    }
+    echo json_encode("This field is required.");
+    return;
+}
+
 function  Login()
 {
     $login =  $_POST["login"];
@@ -81,16 +103,16 @@ function  Login()
             $_SESSION['login']=$login;
             $_SESSION['id']=$id;
             $_SESSION["logged_in"] = 1;
-            echo true;
+            echo "";
         }
         else
         {
-            echo  false;
+            echo  "Wrong login or password.";
         }
     }
     else
     {
-        echo  false;
+        echo  "Not all fields are filled.";
     }
 }
 
@@ -107,24 +129,25 @@ function  Reg()
             $result = SelectToDB("SELECT id FROM users WHERE login = '$login'");
             if(mysql_num_rows($result) == 1)
             {
-                echo  false;
+                echo  "This name is already in use";
             }
             else
             {
                 $hashedPassword = md5($pwd);
                 SelectToDB("INSERT INTO `users` (`login`, `password`) VALUES ('$login', '$hashedPassword')");
                 Login();
+                echo "";
             }
         }
         else
         {
-            echo  false;
+            echo  "Passwords do not match.";
         }
 
     }
     else
     {
-        echo  false;
+        echo  "Not all fields are filled.";
     }
 }
 
