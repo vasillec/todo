@@ -1,4 +1,22 @@
-$(document).ready(function()
+function HideErrorBlock(){
+  $("#hide-layout, #errorBlock").fadeOut(200);
+}
+
+function ShowErrorBlock(mes){
+  $("#errorBlock").children('.error-message').text(mes);
+  $("#hide-layout, #errorBlock").fadeIn(200);
+}
+
+$(function() {
+  $(".exit").click(function() {
+    HideErrorBlock(); 
+  })
+  $('#hide-layout').click(function() {
+    HideErrorBlock();
+  })
+})
+
+$(function()
 {
     $.ajax({
         type: "POST",
@@ -51,7 +69,7 @@ function Sortable_tasks() {
 
                 success:function(msg)
                 {
-                    console.log(msg);
+                    if(msg) ShowErrorBlock(msg);
                 }
             });
         }
@@ -83,7 +101,6 @@ function Save_add_project(name)
             success:function(msg)
             {
                 var res = JSON.parse(msg);
-                console.log(res);
                 $(".delete_after").remove();
                 res.Status = function (){return (this.status==1)? "checked" : "";} ;
                 $(".projects_container").append(Mustache.render($('#template').html(), res));
@@ -123,6 +140,7 @@ function Change_project_name(elem, id)
 
             success:function(msg)
             {
+
                 $('#addTodoList').removeAttr('disabled','disabled');
             }
         });
@@ -207,7 +225,7 @@ function Task_del(id)
     });
 }
 
-function Task_edit(elem)//---------------------------------------------------------------------------!
+function Task_edit(elem)
 {
     var $per =  $(elem).closest('.task-item');
     $per.find('.task_name').removeAttr('disabled').focus();
@@ -229,7 +247,6 @@ function Change_task_name(elem, id)
             data: "id="+id+"&name="+$(elem).val()+"&method=rename_task",
             success:function(msg)
             {
-
                 $('#addTodoList').removeAttr('disabled','disabled');
             }
         });
