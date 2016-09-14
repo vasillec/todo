@@ -1,0 +1,17 @@
+{% extends "base.twig" %}
+{% block head %}
+    {{ parent() }}
+    <script src="../../public/js/jquery.validate.min.js"></script>
+    <script src="../../public/js/script.js"></script>
+{% endblock %}
+{% block wrapClass %}main-form-wrap{% endblock %}
+{% block body %}
+    <h1 class="main-title">Authorization</h1>
+    <form id="auth-fotm" class="auth-fotm fotm-style" role="form" method="post">
+        <div><input id="login" name="login" type="text" class="auth-form-login" placeholder="Login" maxlength="20">
+        </div>
+        <div><input id="password" name="password" type="password" placeholder="Password" maxlength="20"></div>
+        <input class="blue-btn" id="login_btn" type="submit" value="Sign in" maxlength="20">
+        <a href="/reg">Sign Up</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Task Manager{% endblock %}</title>
+    {% block head %}
+        <link rel="stylesheet" href="../../public/css/style.css"/>
+        <script src="../../public/js/jquery-1.12.0.min.js"></script>
+    {% endblock %}
+</head>
+<body>
+<section class="{% block wrapClass %}main-wrap{% endblock %}">
+    {% if isAuth %}
+
+        <div class="log-out-block">
+            <a id="logOut" class="blue-btn" href="" onclick="event.preventDefault();logout();">Log Out</a>
+            <span class="main-title">User: {{ userLogin }}</span>
+        </div>
+        {% block header %}
+        {% endblock %}
+
+    {% endif %}
+    {% block body %}
+    {% endblock %}
+</section>
+{% block footer %}
+{% endblock %}
+<div id="errorBlock" class="errorBlock">
+    <span class="exit" title="close">✖</span>
+    <span>ERROR! </span>
+    <span class="error-message"></span>
+</div>
+<div id="hide-layout" class="hide-layout"></div>
+</body>
+</html>

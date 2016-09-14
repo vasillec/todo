@@ -1,0 +1,17 @@
+{% extends "base.twig" %}
+{% block title %}
+    Error {{ errorId }}
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="http://{{ server_name }}/public/css/style.css"/>
+    <script src="http://{{ server_name }}/public/js/jquery-1.12.0.min.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="error-block">
+        <span class="error-id">{{ errorId }}</span><br>
+        <span class="error-text">{{ errorText }}</span><br>
+        <span class="error-home">Return to the
+            <a href="http://{{ server_name }}/main">homepage</a></span>
+    </div>
+{% endblock %}

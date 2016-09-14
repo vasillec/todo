@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+{% block head %}
+    {{ parent() }}
+    <script src="../../public/js/jquery-ui.min.js"></script>
+    <script src="../../public/js/mustache.min.js"></script>
+    <script src="../../public/js/main_script.js"></script>
+{% endblock %}
+{% block header %}
+    <header>
+        <h1 class="main-title projects-title">TODO LISTS</h1>
+    </header>
+{% endblock %}
+{% block body %}
+    <div class="projects_container"></div>
+{% endblock %}
+{% block footer %}
+    <footer>
+        <button id="addTodoList" type="button" class="blue-btn" onclick="Add_project();"><span>Add TODO List</span>
+        </button>
+    </footer>
+    {% autoescape false %}
+        {{ mustacheTemplate }}
+    {% endautoescape %}
+{% endblock %}
